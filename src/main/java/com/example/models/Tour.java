@@ -1,15 +1,26 @@
 package com.example.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Tour {
-	private int numTour;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long numTour;
+	
 	private Choix choixJ1;
 	private Choix choixJ2;
 	private int pointsJ1;
 	private int pointsJ2;
 	private int etat; //1: J1 gagne le tour //2: J2  gagne le tour //3: Les deux coopèrent //4: Les deux trahissent
 	
-	Tour(int numTour, Choix choixJ1, Choix choixJ2, int etat, int pointsJ1, int pointsJ2) {
-		this.numTour = numTour;
+	public Tour() {
+	}
+
+	public Tour(Choix choixJ1, Choix choixJ2, int etat, int pointsJ1, int pointsJ2) {
 		this.choixJ1 = choixJ1;
 		this.choixJ2 = choixJ2;
 		this.pointsJ1 = pointsJ1;
@@ -17,13 +28,13 @@ public class Tour {
 		this.etat = etat;
 	}
 	
-	Tour(int numTour, Choix choixJ1, Choix choixJ2) {
+	public Tour(int numTour, Choix choixJ1, Choix choixJ2) {
 		this.numTour = numTour;
 		this.choixJ1 = choixJ1;
 		this.choixJ2 = choixJ2;
 	}
 	
-	public int getNumTour() {
+	public long getNumTour() {
 		return numTour;
 	}
 

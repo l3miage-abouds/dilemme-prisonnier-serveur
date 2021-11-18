@@ -1,6 +1,7 @@
 package com.example.controllers;
-import com.example.models.User;
-import com.example.services.UserService;
+
+import com.example.models.Tour;
+import com.example.services.TourService;
 
 import java.util.List;
 
@@ -15,29 +16,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class UserController {
-
+public class TourController {
+    
     @Autowired
-    private UserService userService;
+    private TourService tourService;
 
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.findAll();
+    @GetMapping("/tours")
+    public List<Tour> getTours() {
+        return tourService.findAll();
     }
 
-    @RequestMapping("/users/{userId}")
-    public User findUser(@PathVariable Long userId) {
-        User user = userService.findById(userId);
-        return user;
+    @RequestMapping("/tours/{tourId}")
+    public Tour findTour(@PathVariable long id) {
+        Tour tour = tourService.findById(id);
+        return tour;
     }
 
-    @GetMapping("/users/count")
+    @GetMapping("/tours/count")
     public Long count() {
-        return userService.count();
+        return tourService.count();
     }
 
-    @PostMapping("/users")
-    void addUser(@RequestBody User user) {
-        userService.save(user);
+    @PostMapping("/tours")
+    void addTour(@RequestBody Tour tour) {
+        tourService.save(tour);
     }
 }

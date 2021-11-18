@@ -1,6 +1,7 @@
 package com.example.controllers;
-import com.example.models.User;
-import com.example.services.UserService;
+
+import com.example.models.Joueur;
+import com.example.services.JoueurService;
 
 import java.util.List;
 
@@ -15,29 +16,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class UserController {
-
+public class JoueurController {
+    
     @Autowired
-    private UserService userService;
+    private JoueurService joueurService;
 
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.findAll();
+    @GetMapping("/joueurs")
+    public List<Joueur> getJoueurs() {
+        return joueurService.findAll();
     }
 
-    @RequestMapping("/users/{userId}")
-    public User findUser(@PathVariable Long userId) {
-        User user = userService.findById(userId);
-        return user;
+    @RequestMapping("/joueurs/{joueurId}")
+    public Joueur findJoueur(@PathVariable int numJoueur) {
+        Joueur joueur = joueurService.findById(numJoueur);
+        return joueur;
     }
 
-    @GetMapping("/users/count")
+    @GetMapping("/joueurs/count")
     public Long count() {
-        return userService.count();
+        return joueurService.count();
     }
 
-    @PostMapping("/users")
-    void addUser(@RequestBody User user) {
-        userService.save(user);
+    @PostMapping("/joueurs")
+    void addJoueur(@RequestBody Joueur joueur) {
+        joueurService.save(joueur);
     }
 }

@@ -3,35 +3,34 @@ package com.example.models;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.example.strategies.ChoixStrategie;
 
+@Entity
 public class Joueur {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int numJoueur;
+
 	private String username;
+
+	@ElementCollection
 	private List<Choix> coupsPrecedents;
 	private ChoixStrategie strategie;
 	
 	public Joueur() {
 	}
-	
-	public Joueur(int numJoueur) {
-		this.numJoueur = numJoueur;
-	}
 
 	public Joueur(String username) {
 		this.username = username;
 	}
-	
-	public Joueur(int numJoueur, String username) {
-		this.numJoueur = numJoueur;
-		this.username = username;
-	}
-	
-	public Joueur(int numJoueur, List<Choix> coupsPrecedents) {
-		this.numJoueur = numJoueur;
-		this.coupsPrecedents = coupsPrecedents;
-	}
-	
+
 	public int getNumJoueur() {
 		return numJoueur;
 	}
