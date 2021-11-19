@@ -20,7 +20,7 @@ public class TourService {
         return tours;
     }
 
-    public Tour findById(long id) {
+    public Tour findById(int id) {
         Tour tour = tourRepository.findById(id).orElse(null);
         return tour;
     }
@@ -29,7 +29,7 @@ public class TourService {
         return tourRepository.count();
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         tourRepository.deleteById(id);
     }
 

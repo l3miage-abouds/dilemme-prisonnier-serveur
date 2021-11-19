@@ -15,9 +15,6 @@ import com.example.strategies.ChoixStrategie;
 public class Joueur {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int numJoueur;
-
 	private String username;
 
 	@ElementCollection
@@ -29,14 +26,6 @@ public class Joueur {
 
 	public Joueur(String username) {
 		this.username = username;
-	}
-
-	public int getNumJoueur() {
-		return numJoueur;
-	}
-
-	public void setNumJoueur(int numJoueur) {
-		this.numJoueur = numJoueur;
 	}
 
 	public String getUsername() {
@@ -64,13 +53,13 @@ public class Joueur {
 	}
 
 	public Rencontre initRencontre(Joueur j, int nbTours) {
-		System.out.println("Le joueur " + getNumJoueur() + " a créé une rencontre avec " + nbTours + " tours.");
+		System.out.println(getUsername() + " a créé une rencontre avec " + nbTours + " tours.");
 		return new Rencontre(this, j, nbTours);
 	}
 	
 	public void rejoins(Rencontre r) {
 		// attention 
-		System.out.println("Le joueur " + getNumJoueur() + " a rejoint la rencontre. Il joue avec le joueur " + r.getJ1().getNumJoueur() + ".");
+		System.out.println(getUsername() + " a rejoint la rencontre. Il joue avec " + r.getJ1().getUsername() + ".");
 	}
 	
 	public void abandonne() {		

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Tour {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long numTour;
+	private int numTour;
 	
 	private Choix choixJ1;
 	private Choix choixJ2;

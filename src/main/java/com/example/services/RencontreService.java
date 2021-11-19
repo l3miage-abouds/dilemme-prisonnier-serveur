@@ -20,7 +20,7 @@ public class RencontreService {
         return rencontres;
     }
 
-    public Rencontre findById(long id) {
+    public Rencontre findById(int id) {
         Rencontre Rencontre = rencontreRepository.findById(id).orElse(null);
         return Rencontre;
     }
@@ -29,7 +29,7 @@ public class RencontreService {
         return rencontreRepository.count();
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         rencontreRepository.deleteById(id);
     }
 

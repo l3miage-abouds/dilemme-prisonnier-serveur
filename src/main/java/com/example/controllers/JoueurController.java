@@ -27,8 +27,8 @@ public class JoueurController {
     }
 
     @RequestMapping("/joueurs/{joueurId}")
-    public Joueur findJoueur(@PathVariable int numJoueur) {
-        Joueur joueur = joueurService.findById(numJoueur);
+    public Joueur findJoueur(@PathVariable String username) {
+        Joueur joueur = joueurService.findById(username);
         return joueur;
     }
 

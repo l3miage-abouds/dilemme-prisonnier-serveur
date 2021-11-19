@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class Rencontre {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name = "rencontreJoueur1")
@@ -38,6 +38,14 @@ public class Rencontre {
 		this.nbTours = nbTours;
 	}
 	
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Joueur getJ1() {
 		return j1;
 	}
@@ -100,9 +108,9 @@ public class Rencontre {
 		System.out.println("-> J2: " + getScoreJ2() + " pts");
 		
 		if (getScoreJ1() > getScoreJ2()) {
-			System.out.println("Le gagnant de cette rencontre est le joueur " + getJ1().getNumJoueur() + ".");
+			System.out.println("Le gagnant de cette rencontre est " + getJ1().getUsername() + ".");
 		} else if (getScoreJ1() < getScoreJ2()) {
-			System.out.println("Le gagnant de cette rencontre est le joueur " + getJ2().getNumJoueur() + ".");
+			System.out.println("Le gagnant de cette rencontre est  " + getJ2().getUsername() + ".");
 		} else {
 			System.out.println("Pas de gagnant. Il y a égalité.");
 		}

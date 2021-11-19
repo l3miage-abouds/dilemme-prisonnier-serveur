@@ -27,7 +27,7 @@ public class TourController {
     }
 
     @RequestMapping("/tours/{tourId}")
-    public Tour findTour(@PathVariable long id) {
+    public Tour findTour(@PathVariable int id) {
         Tour tour = tourService.findById(id);
         return tour;
     }

@@ -16,20 +16,5 @@ public class Application extends SpringBootServletInitializer{
         SpringApplication.run(Application.class, args);
     }
 
-    /*
-    Rencontres: 
-    {
-        "j1": 
-        {
-            "numJoueur": 1,
-            "username": "aboudk"
-        },
-        "j2": 
-        {
-            "numJoueur": 2,
-            "username": "abouds"
-        },
-        "nbTours": 5
-    }
-    */
+    /* game/{idGame}/player/{idPlayer}*/
 }

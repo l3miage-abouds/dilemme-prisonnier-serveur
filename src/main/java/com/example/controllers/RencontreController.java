@@ -27,7 +27,7 @@ public class RencontreController {
     }
 
     @RequestMapping("/rencontres/{rencontreId}")
-    public Rencontre findRencontre(@PathVariable long id) {
+    public Rencontre findRencontre(@PathVariable int id) {
         Rencontre rencontre = rencontreService.findById(id);
         return rencontre;
     }

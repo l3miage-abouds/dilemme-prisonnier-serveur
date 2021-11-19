@@ -20,7 +20,7 @@ public class JoueurService {
         return joueurs;
     }
 
-    public Joueur findById(int id) {
+    public Joueur findById(String id) {
         Joueur joueur = joueurRepository.findById(id).orElse(null);
         return joueur;
     }
@@ -29,8 +29,8 @@ public class JoueurService {
         return joueurRepository.count();
     }
 
-    public void deleteById(Integer numJoueur) {
-        joueurRepository.deleteById(numJoueur);
+    public void deleteById(String username) {
+        joueurRepository.deleteById(username);
     }
 
     public void save(Joueur joueur) {

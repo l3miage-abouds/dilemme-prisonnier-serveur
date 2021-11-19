@@ -7,7 +7,7 @@ import com.example.models.Rencontre;
 public class Gentil implements Strategie {
 	@Override
 	public Choix getAction(Rencontre r, Joueur j) {
-    	System.out.println("- Choix J" + j.getNumJoueur() + ": [Automatique] Coopérer\n");
+    	System.out.println("- Choix J" + j.getUsername() + ": [Automatique] Coopérer\n");
     	j.getCoupsPrecedents().add(Choix.COOPERER);
 		return Choix.COOPERER;
 	}
