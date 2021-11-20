@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,18 @@ public class RencontreController {
     }
 
     @PostMapping("/rencontres")
-    void addRencontre(@RequestBody Rencontre rencontre) {
+    synchronized void addRencontre(@RequestBody Rencontre rencontre) throws InterruptedException {
+        if(rencontre.getJ2() == null) {
+            System.out.println("Player 1 waiting...");
+            rencontreService.save(rencontre);
+            wait();
+        }
+    }
+
+    @PutMapping("/rencontres")
+    synchronized void updateRencontre(@RequestBody Rencontre rencontre) {
+        System.out.println("Player 2 joined...");
+        notify();
         rencontreService.save(rencontre);
     }
 }
