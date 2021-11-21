@@ -60,7 +60,7 @@ public class RencontreController {
 
     @PutMapping("/rencontres")
     synchronized void updateRencontre(@RequestBody Rencontre rencontre) {
-        System.out.println("Player 2 joined...");
+        System.out.println("rencontre updated");
         rencontre.calculPointsRencontreTotal();
         notify();
         rencontreService.save(rencontre);
