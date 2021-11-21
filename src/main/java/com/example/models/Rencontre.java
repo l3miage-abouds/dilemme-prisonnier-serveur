@@ -100,6 +100,18 @@ public class Rencontre {
 		System.out.println("-> Le score après ce tour: {J1: " + getScoreJ1() + ", J2: " + getScoreJ2() + "}");
 		System.out.println("\n");
 	}
+
+	public void calculPointsRencontreTotal() {
+		int scoreJ1 = 0;
+		int scoreJ2	= 0;
+
+		for(Tour t: tours ){
+			 scoreJ1 += t.getPointsJ1();
+			 scoreJ2 += t.getPointsJ2();
+		}
+		this.scoreJ1 = scoreJ1;
+		this.scoreJ2 = scoreJ2;
+	  }
 	
 	public void afficheVainqueur() {
 		System.out.println("Résultats de la rencontre: ");

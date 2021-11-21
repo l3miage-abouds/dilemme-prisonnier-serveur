@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class JoueurController {
     
     @Autowired
@@ -26,7 +26,7 @@ public class JoueurController {
         return joueurService.findAll();
     }
 
-    @RequestMapping("/joueurs/{joueurId}")
+    @RequestMapping("/joueurs/{username}")
     public Joueur findJoueur(@PathVariable String username) {
         Joueur joueur = joueurService.findById(username);
         return joueur;

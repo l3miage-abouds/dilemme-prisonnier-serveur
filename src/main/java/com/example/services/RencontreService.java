@@ -1,6 +1,7 @@
 package com.example.services;
 
 import com.example.models.Rencontre;
+import com.example.models.Tour;
 import com.example.repositories.RencontreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,14 @@ public class RencontreService {
     public Rencontre findById(int id) {
         Rencontre Rencontre = rencontreRepository.findById(id).orElse(null);
         return Rencontre;
+    }
+
+    public Tour findTourByRencontre(int idRencontre, int idTour) {
+        return findById(idRencontre).getTours().get(idTour-1);
+    }
+
+    public List<Tour> findToursByRencontre(int idRencontre) {
+        return findById(idRencontre).getTours();
     }
 
     public Long count() {

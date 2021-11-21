@@ -36,5 +36,4 @@ public class TourService {
     public void save(Tour tour) {
         tourRepository.save(tour);
     }
-
 }

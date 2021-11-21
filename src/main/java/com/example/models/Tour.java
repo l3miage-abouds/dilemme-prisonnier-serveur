@@ -1,31 +1,30 @@
 package com.example.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Tour {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int numTour;
+	private int id;
 	
+	private int numTour;
 	private Choix choixJ1;
 	private Choix choixJ2;
 	private int pointsJ1;
 	private int pointsJ2;
-	private int etat; //1: J1 gagne le tour //2: J2  gagne le tour //3: Les deux coopèrent //4: Les deux trahissent
-	
+	private int idRencontre; 
+
 	public Tour() {
 	}
 
-	public Tour(Choix choixJ1, Choix choixJ2, int etat, int pointsJ1, int pointsJ2) {
+	public Tour(int id, Choix choixJ1, Choix choixJ2, int idRencontre, int pointsJ1, int pointsJ2) {
+		this.id = id;
 		this.choixJ1 = choixJ1;
 		this.choixJ2 = choixJ2;
 		this.pointsJ1 = pointsJ1;
 		this.pointsJ2 = pointsJ2;
-		this.etat = etat;
+		this.idRencontre = idRencontre;
 	}
 	
 	public Tour(int numTour, Choix choixJ1, Choix choixJ2) {
@@ -48,6 +47,14 @@ public class Tour {
 
 	public void setChoixJ1(Choix choixJ1) {
 		this.choixJ1 = choixJ1;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Choix getChoixJ2() {
@@ -74,38 +81,34 @@ public class Tour {
 		this.pointsJ2 = pointsJ2;
 	}
 
-	public int getEtat() {
-		return etat;
+	public int getIdRencontre() {
+		return idRencontre;
 	}
 
-	public void setEtat(int etat) {
-		this.etat = etat;
+	public void setIdRencontre(int idRencontre) {
+		this.idRencontre = idRencontre;
 	}
 
 	public void calculPoints() {
 		if (choixJ1 == Choix.COOPERER && choixJ2 == Choix.COOPERER) {
-			this.etat = 3;
 			this.pointsJ1 = 3;
 			this.pointsJ2 = 3;
 			System.out.println("-> J1 remporte 3 points.");
 			System.out.println("-> J2 remporte 3 points.");
 		}
 		if (choixJ1 == Choix.TRAHIR && choixJ2 == Choix.COOPERER) {
-			this.etat = 1;
 			this.pointsJ1 = 5;
-			this.pointsJ2 = 0;
+			this.pointsJ2 = 0;	
 			System.out.println("-> J1 remporte 5 points.");
 			System.out.println("-> J2 remporte 0 points.");
 		}
 		if (choixJ1 == Choix.COOPERER && choixJ2 == Choix.TRAHIR) {
-			this.etat = 2;
 			this.pointsJ1 = 0;
 			this.pointsJ2 = 5;
 			System.out.println("-> J1 remporte 0 points.");
 			System.out.println("-> J2 remporte 5 points.");
 		}
 		if (choixJ1 == Choix.TRAHIR && choixJ2 == Choix.TRAHIR) {
-			this.etat = 4;
 			this.pointsJ1 = 1;
 			this.pointsJ2 = 1;
 			System.out.println("-> J1 remporte 1 point.");

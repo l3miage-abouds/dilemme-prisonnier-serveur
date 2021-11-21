@@ -1,6 +1,7 @@
 package com.example.controllers;
 
 import com.example.models.Rencontre;
+import com.example.models.Tour;
 import com.example.services.RencontreService;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class RencontreController {
     
     @Autowired
@@ -27,7 +28,7 @@ public class RencontreController {
         return rencontreService.findAll();
     }
 
-    @RequestMapping("/rencontres/{rencontreId}")
+    @RequestMapping("/rencontres/{id}")
     public Rencontre findRencontre(@PathVariable int id) {
         Rencontre rencontre = rencontreService.findById(id);
         return rencontre;
@@ -38,9 +39,19 @@ public class RencontreController {
         return rencontreService.count();
     }
 
+    @GetMapping("/rencontres/{idRencontre}/tours/{id}")
+    public Tour findTourByRencontre(@PathVariable int idRencontre, @PathVariable int id) {
+        return rencontreService.findTourByRencontre(idRencontre, id);
+    }
+
+    @GetMapping("/rencontres/{idRencontre}/tours/")
+    public List<Tour> findToursByRencontre(@PathVariable int idRencontre) {
+        return rencontreService.findToursByRencontre(idRencontre);
+    }
+
     @PostMapping("/rencontres")
     synchronized void addRencontre(@RequestBody Rencontre rencontre) throws InterruptedException {
-        if(rencontre.getJ2() == null) {
+        if (rencontre.getJ2() == null) {
             System.out.println("Player 1 waiting...");
             rencontreService.save(rencontre);
             wait();
@@ -50,6 +61,7 @@ public class RencontreController {
     @PutMapping("/rencontres")
     synchronized void updateRencontre(@RequestBody Rencontre rencontre) {
         System.out.println("Player 2 joined...");
+        rencontre.calculPointsRencontreTotal();
         notify();
         rencontreService.save(rencontre);
     }
